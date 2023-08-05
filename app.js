@@ -25,21 +25,5 @@ const gameboard = (() => {
 const gameController = (() => {
   const playerOne = Players("Player 1", "X");
   const playerTwo = Players("Player 2", "O");
-
-  function addGamePiece() {
-    document.querySelectorAll(".squares").forEach((square) => {
-      square.addEventListener("click", () => {
-        for (let i = 0; i < gameboard.board.length; i++) {
-          console.log("hello");
-          square.textContent = playerOne.marker;
-          return;
-        }
-      });
-    });
-  }
-
-  addGamePiece();
-  return {
-    addGamePiece,
-  };
+  let turn = 9;
 })();

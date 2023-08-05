@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .gameBoard {
@@ -19,4 +20,20 @@
   height: 160px;
   text-align: center;
   line-height: 160px;
+}
+
+container {
+  display: grid;
+  justify-content: center;
+  row-gap: 100px;
+}
+
+.buttons {
+  justify-self: center;
+  padding-top: 50px;
+}
+
+.newGame {
+  padding: 10px 20px;
+  font-size: 20px;
 }
