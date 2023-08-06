@@ -25,33 +25,51 @@ const gameboard = (() => {
 const gameController = (() => {
   const playerOne = Players("Player 1", "X");
   const playerTwo = Players("Player 2", "O");
-
-  const playerFirst = true;
+  let currentPlayer;
   let turns = 9;
 
-  const makeMove = () => {
+  const playGame = () => {
     playerMove = document.querySelectorAll(".squares");
     playerMove.forEach((square) => {
-      square.addEventListener("click", (e) => {
-        square.textContent = whosTurn(playerFirst);
+      square.addEventListener("click", () => {
+        whosTurn();
+        makeMove(square);
+        checkWinner();
+
         // console.log(e.target.getAttribute("data-spot"));
       });
     });
   };
+
+  const makeMove = (square) => (square.textContent = currentPlayer);
 
   const whosTurn = () => {
     if (turns % 2 === 1) {
       console.log("p1");
       turns--;
       console.log(turns);
-      return playerOne.marker;
+      currentPlayer = playerOne.marker;
     } else {
       console.log("p2");
       turns--;
       console.log(turns);
-      return playerTwo.marker;
+      currentPlayer = playerTwo.marker;
     }
   };
 
-  makeMove();
+  const checkWinner = () => {
+    if (turns == 0) {
+      setTimeout(function () {
+        alert("Game Over, No one wins!");
+      }, 100);
+    } else if () {
+
+    }
+  };
+
+  playGame();
+
+  return {
+    playGame,
+  };
 })();
