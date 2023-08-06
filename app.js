@@ -11,7 +11,7 @@ const gameboard = (() => {
   let displayBoard = document.querySelector(".gameBoard");
   for (let i = 0; i < board.length; i++) {
     let squares = document.createElement("div");
-    squares.setAttribute("class", "squares");
+    squares.classList.add("squares");
     squares.setAttribute("data-spot", i);
     squares.textContent = board[i];
     displayBoard.appendChild(squares);
@@ -41,8 +41,6 @@ const gameController = (() => {
     });
   };
 
-  const makeMove = (square) => (square.textContent = currentPlayer);
-
   const whosTurn = () => {
     if (turns % 2 === 1) {
       console.log("p1");
@@ -57,13 +55,16 @@ const gameController = (() => {
     }
   };
 
+  const makeMove = (square) => {
+    square.classList.add("placed");
+    return (square.textContent = currentPlayer);
+  };
+
   const checkWinner = () => {
     if (turns == 0) {
       setTimeout(function () {
         alert("Game Over, No one wins!");
       }, 100);
-    } else if () {
-
     }
   };
 

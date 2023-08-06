@@ -37,3 +37,7 @@ container {
   padding: 10px 20px;
   font-size: 20px;
 }
+
+.placed {
+  pointer-events: none;
+}
