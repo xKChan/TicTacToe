@@ -83,11 +83,13 @@ const gameController = (() => {
         break;
       }
     }
+
     if (gamewinner) {
       gameboard.gameStatus.textContent = `${currentPlayer} Wins!`;
       for (let i = 0; i < gameboard.board.length; i++) {
         playerMove[i].classList.add("placed");
       }
+      running = false;
       return;
     }
     whosTurn();
@@ -95,13 +97,18 @@ const gameController = (() => {
 
   const checkTurns = () => {
     if (turns == 0) {
+      console.log("hello");
+      console.log(turns);
       gameboard.gameStatus.textContent = `Game Over! It's a Tie`;
+      return;
     }
   };
 
   const newGame = () => {
     gameboard.board = ["", "", "", "", "", "", "", "", ""];
     currentPlayer = "X";
+    gamewinner = false;
+    gameboard.gameStatus.textContent = `${currentPlayer}'s turn`;
     turns = 9;
     for (let i = 0; i < gameboard.board.length; i++) {
       playerMove[i].textContent = "";
