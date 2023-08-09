@@ -52,8 +52,9 @@ const gameController = (() => {
   const makeMove = (square) => {
     const spotClicked = square.getAttribute("data-spot");
     gameboard.board[spotClicked] = currentPlayer;
-    square.classList.add("placed", currentPlayer);
+    square.classList.add("placed");
     square.textContent = currentPlayer;
+    turns--;
   };
 
   const checkWinner = () => {
@@ -84,6 +85,9 @@ const gameController = (() => {
     }
     if (gamewinner) {
       gameboard.gameStatus.textContent = `${currentPlayer} Wins!`;
+      for (let i = 0; i < gameboard.board.length; i++) {
+        playerMove[i].classList.add("placed");
+      }
       return;
     }
     whosTurn();
@@ -91,13 +95,24 @@ const gameController = (() => {
 
   const checkTurns = () => {
     if (turns == 0) {
-      setTimeout(function () {
-        alert("Game Over, No one wins!");
-      }, 100);
+      gameboard.gameStatus.textContent = `Game Over! It's a Tie`;
+    }
+  };
+
+  const newGame = () => {
+    gameboard.board = ["", "", "", "", "", "", "", "", ""];
+    currentPlayer = "X";
+    turns = 9;
+    for (let i = 0; i < gameboard.board.length; i++) {
+      playerMove[i].textContent = "";
+      playerMove[i].classList.remove("placed");
     }
   };
 
   playGame();
+  const newGameBtn = document
+    .querySelector(".newGame")
+    .addEventListener("click", newGame);
 
   return {
     playGame,
