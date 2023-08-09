@@ -37,12 +37,8 @@ const gameController = (() => {
       playerMove.forEach((square) => {
         square.addEventListener("click", () => {
           makeMove(square);
-          whosTurn();
-          if (turns < 5) {
-            checkWinner();
-          }
+          checkWinner();
           checkTurns();
-          console.log(gameboard.board);
         });
       });
     }
@@ -55,7 +51,6 @@ const gameController = (() => {
 
   const makeMove = (square) => {
     const spotClicked = square.getAttribute("data-spot");
-    console.log(spotClicked);
     gameboard.board[spotClicked] = currentPlayer;
     square.classList.add("placed", currentPlayer);
     square.textContent = currentPlayer;
@@ -89,7 +84,9 @@ const gameController = (() => {
     }
     if (gamewinner) {
       gameboard.gameStatus.textContent = `${currentPlayer} Wins!`;
+      return;
     }
+    whosTurn();
   };
 
   const checkTurns = () => {
