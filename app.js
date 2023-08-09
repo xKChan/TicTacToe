@@ -44,17 +44,17 @@ const gameController = (() => {
     }
   };
 
-  const whosTurn = () => {
-    currentPlayer = currentPlayer == "X" ? "O" : "X";
-    gameboard.gameStatus.textContent = `${currentPlayer}'s turn`;
-  };
-
   const makeMove = (square) => {
     const spotClicked = square.getAttribute("data-spot");
     gameboard.board[spotClicked] = currentPlayer;
     square.classList.add("placed");
     square.textContent = currentPlayer;
     turns--;
+  };
+
+  const whosTurn = () => {
+    currentPlayer = currentPlayer == "X" ? "O" : "X";
+    gameboard.gameStatus.textContent = `${currentPlayer}'s turn`;
   };
 
   const checkWinner = () => {
@@ -80,23 +80,24 @@ const gameController = (() => {
         continue;
       } else if (cellA == cellB && cellB == cellC) {
         gamewinner = true;
+        running = false;
         break;
       }
     }
 
     if (gamewinner) {
-      gameboard.gameStatus.textContent = `${currentPlayer} Wins!`;
+      const winner = currentPlayer;
       for (let i = 0; i < gameboard.board.length; i++) {
         playerMove[i].classList.add("placed");
       }
-      running = false;
+      gameboard.gameStatus.textContent = `${winner} Wins!`;
       return;
     }
     whosTurn();
   };
 
   const checkTurns = () => {
-    if (turns == 0) {
+    if (turns == 0 && !gamewinner) {
       console.log("hello");
       console.log(turns);
       gameboard.gameStatus.textContent = `Game Over! It's a Tie`;
