@@ -28,6 +28,7 @@ const gameController = (() => {
   let currentPlayer = "X";
   let turns = 9;
   let running = false;
+  let gamewinner = false;
 
   const playGame = () => {
     playerMove = document.querySelectorAll(".squares");
@@ -68,7 +69,6 @@ const gameController = (() => {
       [0, 4, 8],
       [2, 4, 6],
     ];
-    let gamewinner = false;
 
     for (let i = 0; i < winConditions.length; i++) {
       const conditions = winConditions[i];
