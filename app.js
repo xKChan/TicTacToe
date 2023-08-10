@@ -4,7 +4,7 @@ const Players = (name) => {
 };
 
 const getPlayers = (() => {
-  const names = [];
+  let names = [];
   const gameTitle = document.querySelector(".gameTitle");
   const gameContainer = document.querySelector(".container");
   let form = document.querySelector(".getPlayers");
@@ -29,11 +29,9 @@ const getPlayers = (() => {
       form.style.display = "";
       document.getElementById("player1").value = "";
       document.getElementById("player2").value = "";
+      gameController.newGame();
+      names.length = 0;
     });
-
-    form.style.display = "";
-    document.querySelector(".gameTitle").style.display = "";
-    document.querySelector(".container").style.display = "none";
   };
 
   restartGame();
@@ -163,5 +161,6 @@ const gameController = (() => {
 
   return {
     playGame,
+    newGame,
   };
 })();
