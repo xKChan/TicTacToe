@@ -1,7 +1,46 @@
 // Create Player --> Factory Function
-const Players = (name, marker) => {
-  return { name, marker };
+const Players = (name) => {
+  return { name };
 };
+
+const getPlayers = (() => {
+  const names = [];
+  const gameTitle = document.querySelector(".gameTitle");
+  const gameContainer = document.querySelector(".container");
+  let form = document.querySelector(".getPlayers");
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const getplayer1 = Players(document.querySelector("#player1").value);
+    const getplayer2 = Players(document.querySelector("#player2").value);
+    names.push(getplayer1, getplayer2);
+    startGame(form);
+  });
+
+  const startGame = (form) => {
+    form.style.display = "none";
+    gameTitle.style.display = "none";
+    gameContainer.style.display = "";
+  };
+
+  const restartGame = () => {
+    document.querySelector(".resetGame").addEventListener("click", () => {
+      gameTitle.style.display = "";
+      gameContainer.style.display = "none";
+      form.style.display = "";
+      document.getElementById("player1").value = "";
+      document.getElementById("player2").value = "";
+    });
+
+    form.style.display = "";
+    document.querySelector(".gameTitle").style.display = "";
+    document.querySelector(".container").style.display = "none";
+  };
+
+  restartGame();
+  return {
+    names,
+  };
+})();
 
 // Create Gameboard --> Module Function
 const gameboard = (() => {

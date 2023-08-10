@@ -4,6 +4,34 @@
   box-sizing: border-box;
 }
 
+.getPlayers {
+  border: 1px black solid;
+  padding: 60px;
+  display: grid;
+  gap: 10px;
+}
+
+.getPlayers .h1 {
+  font-size: 30px;
+}
+
+.formContainer {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.gameContainer {
+  display: grid;
+}
+
+.gameTitle {
+  font-size: 50px;
+  text-align: center;
+}
+
 .gameBoard {
   display: grid;
   width: 500px;
@@ -25,6 +53,7 @@ container {
   height: 100vh;
   width: 100vw;
   justify-content: center;
+  grid-area: 1 / 1 / 2 / 2;
 }
 
 .buttons {
@@ -32,10 +61,13 @@ container {
   margin-bottom: 20px;
   align-self: center;
   display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-content: center;
+  gap: 10px;
 }
 
-.newGame {
+.newGame,
+.resetGame {
   padding: 10px 20px;
   font-size: 20px;
   justify-self: center;
